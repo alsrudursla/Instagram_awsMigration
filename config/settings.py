@@ -14,6 +14,8 @@ from pathlib import Path
 import pymysql
 pymysql.install_as_MySQLdb()
 
+import my_setting.py
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(cq$$2c0=g+riw%#zl+-b7-(v1fu3y_za829#8s7v^zz+=slb2'
+SECRET_KEY = my_setting['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -82,11 +84,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rds01',
-        'USER': 'admin',
-        'PASSWORD': 'qwer1234',
-        'HOST': 'db01.cf0zgan3jowh.ap-northeast-2.rds.amazonaws.com',
-        'PORT': '3306',
+        'NAME': my_setting['DBNAME'],
+        'USER': my_setting['DBUSER'],
+        'PASSWORD': my_setting['DBPW'],
+        'HOST': my_setting['DBHOST'],
+        'PORT': my_setting['DBPORT'],
         'OPTIONS': {
             'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"'
         }
